@@ -1,0 +1,6 @@
+@startuml
+
+User -> (Select Starting Level)
+User -> (Start Game)
+
+@enduml

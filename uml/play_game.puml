@@ -1,0 +1,12 @@
+@startuml
+(Play Level) as Play
+User --> Play
+Play -left-> (View Level Start Sequence)
+Play --> (View Ghosts)
+Play --> (View Pacman)
+Play --> (Select Ghost)
+Play --> (Command Ghost)
+Play -right-> (View Level Win Sequence)
+Play -right-> (View Level Lose Sequence)
+
+@enduml

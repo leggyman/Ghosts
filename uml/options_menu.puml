@@ -1,0 +1,6 @@
+@startuml
+
+User -> (Select Music Volume)
+User -> (Select Effects Volume)
+
+@enduml

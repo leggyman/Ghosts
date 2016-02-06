@@ -1,0 +1,14 @@
+@startuml
+
+User -> (View Start Game Menu)
+User -> (View Options Menu)
+
+
+'note left of (User)
+'A note can also
+'be on several lines
+'end note
+
+'note "This note is connected\nto several objects." as N2
+'(Start) .. N2
+@enduml
