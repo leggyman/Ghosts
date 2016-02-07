@@ -1,5 +1,8 @@
 package com.plumbum.ghosts.levels;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by jesse on 1/29/2016.
  */
@@ -8,15 +11,18 @@ public class LevelNode {
 	private LevelNode down;
 	private LevelNode left;
 	private LevelNode right;
+	private boolean isWall;
+
+	private int x;
+	private int y;
 
 	private NodeType nodeType;
 
-	public LevelNode(LevelNode up, LevelNode down, LevelNode left, LevelNode right) {
-		this.up = up;
-		this.down = down;
-		this.left = left;
-		this.right = right;
-		calculateType();
+	public LevelNode(int x, int y, boolean isWall) {
+		this.isWall = isWall;
+		this.x = x;
+		this.y = y;
+		this.up = this.down = this.left = this.right = null;
 	}
 
 	public static enum NodeType {
@@ -53,24 +59,32 @@ public class LevelNode {
 		}
 	}
 
-	public void setUp(LevelNode up) {
+	public LevelNode setUp(LevelNode up) {
 		this.up = up;
+		up.setDown(this);
 		calculateType();
+		return this;
 	}
 
-	public void setDown(LevelNode down) {
+	public LevelNode setDown(LevelNode down) {
 		this.down = down;
+		down.setUp(this);
 		calculateType();
+		return this;
 	}
 
-	public void setLeft(LevelNode left) {
+	public LevelNode setLeft(LevelNode left) {
 		this.left = left;
+		left.setRight(this);
 		calculateType();
+		return this;
 	}
 
-	public void setRight(LevelNode right) {
+	public LevelNode setRight(LevelNode right) {
 		this.right = right;
+		right.setLeft(this);
 		calculateType();
+		return this;
 	}
 
 	private void calculateType() {
@@ -106,5 +120,41 @@ public class LevelNode {
 			this.nodeType = NodeType.DEADEND_UP;
 		else
 			this.nodeType = NodeType.WALL;
+	}
+
+	public LevelNode getUp() {
+		return up;
+	}
+
+	public LevelNode getDown() {
+		return down;
+	}
+
+	public LevelNode getLeft() {
+		return left;
+	}
+
+	public LevelNode getRight() {
+		return right;
+	}
+
+	public List<LevelNode> getNeighbors() {
+		return Arrays.asList(up, right, down, left);
+	}
+
+	public boolean isWall() {
+		return isWall;
+	}
+
+	public NodeType getNodeType() {
+		return nodeType;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 }
