@@ -19,7 +19,6 @@ public class GhostsGame extends ApplicationAdapter {
 		//img = new Texture("badlogic.jpg");
 		font = new BitmapFont();
 		font.setColor(Color.RED);
-		font
 	}
 
 	@Override
