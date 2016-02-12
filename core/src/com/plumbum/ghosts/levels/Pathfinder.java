@@ -60,10 +60,19 @@ public class Pathfinder {
         return null;
     }
 
-
-
     private int estimateDistance(LevelNode a, LevelNode b) {
-        return Math.abs(a.getX() - b.getX()) + Math.abs(a.getY() - b.getY());
+        int obvious = Math.abs(a.getX() - b.getX()) + Math.abs(a.getY() - b.getY());
+        Map<LevelNode, LevelNode> warpGates = levelGrid.getWarpGates();
+        if (warpGates != null && !warpGates.isEmpty()) {
+            int usingWarp = warpGates.keySet().stream().map(node -> {
+                LevelNode exit = warpGates.get(node);
+                return Math.abs(a.getX() - node.getX()) + Math.abs(a.getY() - node.getY())
+                        + Math.abs(b.getX() - exit.getX()) + Math.abs(b.getY() - exit.getY());
+            }).min(Integer::compare).get();
+            if (usingWarp < obvious)
+                obvious = usingWarp;
+        }
+        return obvious;
     }
 
     private LevelNode bestScore(Set<LevelNode> openSet, Map<LevelNode, Integer> fScores) {
