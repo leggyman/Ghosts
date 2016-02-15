@@ -40,7 +40,7 @@ public class LevelGrid {
             " B5E55E5D ",
             " 48D  B94 ",
             "5E67CC67E5",
-            " 95C67C58 ",
+            " B5C67C5D ",
             "8ACACCACA9",
             "4 486794 4",
             "75AA55AA56"
