@@ -1,6 +1,7 @@
 package com.plumbum.ghosts;
 
 import com.badlogic.gdx.Game;
+import com.plumbum.ghosts.screens.AnimationTestScreen;
 import com.plumbum.ghosts.screens.GameScreen;
 
 /**
@@ -9,6 +10,6 @@ import com.plumbum.ghosts.screens.GameScreen;
 public class Ghosts extends Game {
 	@Override
 	public void create() {
-		setScreen(new GameScreen(this));
+		setScreen(new AnimationTestScreen(this));
 	}
 }
